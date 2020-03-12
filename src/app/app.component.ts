@@ -5,11 +5,7 @@ import {FormBuilder, FormGroup, FormControl, FormGroupDirective, NgForm} from '@
 /** Error when the parent is invalid */
 class CrossFieldErrorMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return (control && control.invalid && (control.dirty || control.touched || isSubmitted));
-
-    // If above return does not wroks then add !! before condition as below
-    // return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
+    return control.dirty && form.invalid;
   }
 }
 
